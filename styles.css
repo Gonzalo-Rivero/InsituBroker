@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap');
 
 /* =========================
-   VARIABLES
+  VARIABLES
    ========================= */
 :root {
   --primary-color: #5217FB;
@@ -30,7 +30,7 @@
 }
 
 /* =========================
-   RESET Y BASE
+  RESET Y BASE
    ========================= */
 * { box-sizing: border-box; }
 
@@ -49,7 +49,7 @@ img {
 }
 
 /* =========================
-   HEADER Y NAV
+  HEADER Y NAV
    ========================= */
 header {
   background: var(--background-dark);
@@ -64,38 +64,31 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: 1.2rem var(--spacing-lg);
   max-width: var(--large-desktop);
   margin: 0 auto;
+  min-height: 140px;
 }
 
+.logo img{
+  height: 100%;
+  width: 50%;
+  align-items: center;
+}
 .logo {
   display: flex;
+  align-content: center;
   align-items: center;
-  min-width: 180px;
+  min-width: unset;
   text-decoration: none;
   transition: transform 0.2s ease;
 }
 
 .logo:hover { transform: scale(1.05); }
 
-.logo-img {
-  height: 60px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(20, 19, 37, 0.27));
-  margin-right: 16px;
-}
 
-.logo-text {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--primary-color);
-  letter-spacing: 2px;
-  margin-left: 4px;
-  line-height: 1;
-}
+
+
 
 nav ul {
   list-style: none;
@@ -121,7 +114,7 @@ nav a:hover {
 }
 
 /* =========================
-   HERO SECTION
+  HERO SECTION
    ========================= */
 .hero {
   background: linear-gradient(120deg, rgba(82,23,251,0.6) 0%, rgba(116,102,251,0.6) 100%), url('img/logo-oficina.jpg') center 35%/cover no-repeat;
@@ -174,7 +167,7 @@ nav a:hover {
 }
 
 /* =========================
-   SECCIONES PRINCIPALES
+  SECCIONES PRINCIPALES
    ========================= */
 .about {
   text-align: center;
@@ -258,7 +251,7 @@ nav a:hover {
 }
 
 /* =========================
-   TÍTULOS DE PÁGINA
+  TÍTULOS DE PÁGINA
    ========================= */
 h1, h2, h3, h4, h5, h6, .logo-text {
   font-family: 'Montserrat', Arial, sans-serif;
@@ -283,7 +276,7 @@ h1.page-title, h2.page-title {
 }
 
 /* =========================
-   FOOTER
+  FOOTER
    ========================= */
 footer {
   background: var(--background-medium);
@@ -389,7 +382,7 @@ footer {
 }
 
 /* =========================
-   FORMULARIOS
+  FORMULARIOS
    ========================= */
 .contact-form-container {
   max-width: 600px;
@@ -927,6 +920,41 @@ nav a:hover {
   }
 }
 
+/* Servicios destacados: cada box separada y ocupando casi todo el ancho */
+.servicios-destacados {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin: 0;
+  padding: 0 2vw;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+.servicio-destacado {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--background-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(20, 19, 37, 0.13);
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .servicio-destacado {
+    flex-direction: column !important;
+    text-align: center;
+    padding: 1.5rem 0.5rem;
+  }
+  .servicios-destacados {
+    padding: 0 0.5rem;
+  }
+}
+
 /* Boxes de servicios destacados (servicios.html) */
 .servicios-destacados {
   display: flex;
@@ -981,4 +1009,102 @@ nav a:hover {
   color: var(--accent-color);
   font-size: 1.15rem;
   line-height: 1.7;
+}
+/* Contenedor general */
+.services {
+  padding: 2rem 1rem;
+}
+
+/* Título */
+.services__heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Cada servicio como grid de 2 columnas */
+.services__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+/* Alternar orden: texto-imagen en los que tienen este modificador */
+.services__item--reverse {
+  grid-template-areas: "content image";
+}
+
+/* Orden por defecto: imagen-texto */
+.services__item:not(.services__item--reverse) {
+  grid-template-areas: "image content";
+}
+
+/* Áreas */
+.services__image {
+  grid-area: image;
+}
+.services__content {
+  grid-area: content;
+}
+
+/* Imagen */
+.services__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Texto */
+.services__content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.services__content p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Botón de llamada a la acción */
+.services__cta {
+  text-align: center;
+  margin: 4rem 0;
+}
+.services__cta-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #5217FB;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+.services__cta-link:hover {
+  background-color: #3e0dbf;
+}
+
+/* Responsive: apilar imagen y texto */
+@media (max-width: 768px) {
+  .services__item {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "content";
+  }
+}
+
+@media (max-width: 700px) {
+  .logo-img {
+    height: 80px;
+  }
+  nav {
+    min-height: 90px;
+    padding: 0.5rem 1rem;
+  }
 }
