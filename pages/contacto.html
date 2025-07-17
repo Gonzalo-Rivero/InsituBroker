@@ -9,10 +9,10 @@
 <body>
   <header>
     <nav>
-      <div class="logo">
+      <a href="../index.html" class="logo">
         <img src="../img/logo insitu.png" alt="INSITU BROKER" class="logo-img" />
         <span class="logo-text">INSITU BROKER</span>
-      </div>
+      </a>
       <ul>
         <li><a href="../index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
@@ -21,25 +21,212 @@
       </ul>
     </nav>
   </header>
+
   <main>
     <section class="about">
-      <h1>Contacto</h1>
-      <form class="contact-form" method="POST" action="/enviar-formulario">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" />
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-        <button class="cta" type="submit">Enviar</button>
-      </form>
-      <p>O escribinos a <a href="mailto:info@insitubroker.com">info@insitubroker.com</a></p>
+      <h1 class="page-title">Contacto</h1>
+      <p>Completá el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+      <div class="contact-form-container">
+        <form class="contact-form" novalidate>
+          <div class="form-group">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Nombre completo</label>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Correo electrónico</label>
+          </div>
+
+          <div class="form-group">
+            <input type="tel" id="userPhone" name="userPhone" placeholder="+54 9 291 532 6973">
+            <label for="userPhone">Teléfono / WhatsApp (opcional)</label>
+          </div>
+
+          <div class="form-group">
+            <select id="subject" name="subject" required>
+              <option value="">Seleccionar motivo</option>
+              <option value="Siniestro">Siniestro</option>
+              <option value="Presupuesto">Presupuesto</option>
+              <option value="Preguntas">Preguntas</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <label for="subject">Motivo de consulta</label>
+          </div>
+
+          <div class="form-group">
+            <textarea id="message" name="message" required></textarea>
+            <label for="message">Mensaje</label>
+          </div>
+
+          <!-- hidden para CallMeBot -->
+          <input type="hidden" id="callmebotMessage" value="">
+
+          <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info-section">
+        <h3>Otras formas de contactarnos</h3>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="#5217FB" stroke-width="2"/>
+            </svg>
+            <a href="https://wa.me/5492915326973" target="_blank">291 532-6973</a>
+          </div>
+          <div class="contact-method">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#5217FB" stroke-width="2"/>
+              <polyline points="22,6 12,13 2,6" stroke="#5217FB" stroke-width="2"/>
+            </svg>
+            <a href="mailto:info@insitubroker.com">info@insitubroker.com</a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
   <footer>
-    <p>&copy; 2025 INSITU BROKER. Todos los derechos reservados.</p>
+    <!-- tu footer igual que antes -->
   </footer>
+
+  <!-- ------------- INLINE SCRIPT ------------- -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.querySelector('.contact-form');
+      if (!contactForm) return;
+
+      let sending = false;
+      let formatting = false;
+
+      const showError = (i, msg) => {
+        clearError(i);
+        const e = document.createElement('div');
+        e.className = 'validation-error';
+        e.textContent = msg;
+        i.classList.add('error');
+        i.parentNode.insertBefore(e, i.nextSibling);
+      };
+      const clearError = i => {
+        i.classList.remove('error');
+        const e = i.parentNode.querySelector('.validation-error');
+        if (e) e.remove();
+      };
+      const isEmail = v =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+      const validateField = input => {
+        const v = input.value.trim();
+        if (input.required && !v) {
+          showError(input, 'Este campo es obligatorio');
+          return false;
+        }
+        if (input.type === 'email' && v && !isEmail(v)) {
+          showError(input, 'Por favor ingresa un email válido');
+          return false;
+        }
+        return true;
+      };
+      const validateForm = () => {
+        let ok = true;
+        contactForm.querySelectorAll('input, textarea, select')
+          .forEach(i => { if (!validateField(i)) ok = false; });
+        return ok;
+      };
+
+      // real‑time validation
+      contactForm.querySelectorAll('input, textarea, select')
+        .forEach(i => {
+          i.addEventListener('blur', () => { if (i.value.trim()) validateField(i); });
+          i.addEventListener('input', () => {
+            if (i.classList.contains('error'))
+              setTimeout(() => validateField(i), 300);
+          });
+        });
+
+      contactForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (sending) return;
+        if (!validateForm()) {
+          const fe = contactForm.querySelector('.error');
+          fe?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          fe?.focus();
+          return;
+        }
+
+        sending = true;
+        formatMessage();
+
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const ot = btn.textContent;
+        btn.textContent = 'Enviando mensaje…';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'not-allowed';
+
+        try {
+          await new Promise(r => setTimeout(r, 200));
+          const hidden = document.getElementById('callmebotMessage');
+          const encoded = encodeURIComponent(hidden.value);
+          const url = `https://api.callmebot.com/whatsapp.php?phone=5492915326973&apikey=2897759&text=${encoded}`;
+          const img = new Image();
+          img.onload = img.onerror = () => {
+            setTimeout(() => location.href = './gracias.html', 1500);
+          };
+          setTimeout(() => location.href = './gracias.html', 10000);
+          img.src = url;
+        } catch {
+          btn.textContent = ot;
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+          sending = false;
+          alert('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+        }
+      });
+
+      function formatMessage() {
+        if (formatting) return;
+        formatting = true;
+        try {
+          const get = id => document.getElementById(id)?.value.trim() || '';
+          const name    = get('name').slice(0,50);
+          const email   = get('email').slice(0,50);
+          const phone   = get('userPhone').slice(0,20);
+          const subject = get('subject').slice(0,50);
+          const msg     = get('message').slice(0,200);
+
+          const clean = t => t.replace(/[\r\n\t]+/g,' ').replace(/\s+/g,' ').trim();
+          const now  = new Date();
+          const fecha = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
+          const hora  = `${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+          const parts = [
+            '🌟 Nuevo contacto desde INSITU BROKER',
+            `⏰ Enviado: ${fecha} a las ${hora}`,
+            '',
+            `👤 Nombre: ${clean(name)}`,
+            `📧 Email:  ${clean(email)}`,
+            phone   && `📱 Teléfono: ${clean(phone)}`,
+            subject && `📝 Motivo:  ${clean(subject)}`,
+            msg     && `💬 Mensaje: ${clean(msg)}`
+          ].filter(Boolean);
+
+          let final = parts.join('\n');
+          if (final.length > 800) final = final.slice(0,797) + '...';
+          document.getElementById('callmebotMessage').value = final;
+        } catch {
+          const h = document.getElementById('callmebotMessage');
+          if (h && !h.value) h.value = '🌟 Nuevo contacto desde INSITU BROKER';
+        } finally {
+          setTimeout(() => formatting = false, 100);
+        }
+      }
+    });
+  </script>
 </body>
-</html> 
+</html>
