@@ -10,12 +10,17 @@
 <body>
   <header>
     <nav>
-      <div>
+      <div class="nav-left">
         <a href="../index.html" class="logo">
-        <img class="logo" src="../img/logorectangulo.png" alt="" />
+          <img class="logo" src="../img/logorectangulo.png" alt="" />
         </a>
       </div>
-      <ul>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-menu">
         <li><a href="../index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
@@ -25,13 +30,12 @@
   </header>
 <main>
   <section class="services">
-    <h1 class="services__heading">Nuestros Servicios</h1>
+    <h1 class="services__heading">Nose que poner</h1>
 
     <!-- Servicio 1 -->
     <div class="services__item">
       <div class="services__img-wrapper">
         <img src="../img/autos.dibujo.webp" alt="Seguros de autos y motos">
-        <div></div>
       </div>
       <div class="services__content">
         <h2>Seguros de Automotores</h2>
@@ -43,7 +47,6 @@
     <div class="services__item services__item--reverse">
       <div class="services__img-wrapper">
         <img src="../img/empresas.dibujo.webp" alt="Seguros para empresas">
-        <div></div>
       </div>
       <div class="services__content">
         <h2>Seguros para Empresas</h2>
@@ -55,7 +58,6 @@
     <div class="services__item">
       <div class="services__img-wrapper">
         <img src="../img/casas.dibujo.webp" alt="Seguros de hogar">
-        <div></div>
       </div>
       <div class="services__content">
         <h2>Seguros de Hogar</h2>
@@ -67,7 +69,6 @@
     <div class="services__item services__item--reverse">
       <div class="services__img-wrapper">
         <img src="../img/personas.dibujo.webp" alt="Seguros de vida">
-        <div></div>
       </div>
       <div class="services__content">
         <h2>Seguros de Personas</h2>
@@ -128,9 +129,17 @@
         </div>
       </div>
     </div>
+    <hr class="footer-divider">
     <div class="footer-bottom">
       <p class="copyright">&copy; 2025 INSITU Broker. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html> 
