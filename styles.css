@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700&display=swap');
 
+
+
 /* =========================
   VARIABLES
    ========================= */
@@ -154,6 +156,8 @@ nav a:hover {
   color: var(--secondary-color);
   background: #f0f2ff;
 }
+
+
 
 /* =========================
   HERO SECTION
@@ -1350,19 +1354,31 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Títulos principales modernos y destacados */
-.page-title, h1, h1.page-title {
+.page-title h1, h1, h1.page-title {
   font-family: 'Montserrat', Arial, sans-serif !important;
   font-weight: 900 !important;
   font-size: 2.7rem !important;
   letter-spacing: 0.02em !important;
   margin-bottom: 0.1rem !important;
-  background: linear-gradient(90deg, #fff 0%, #7466FB 100%);
+  background: #7466FB ;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
+  line-height: 1.1;
+}
+.hero h1 {  
+  font-family: 'Montserrat', Arial, sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 2.7rem !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 0.1rem !important;
+  background: linear-gradient(90deg, #fdfdfd 0%, #7466FB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-shadow: 0 2px 12px #a198ff33;
   line-height: 1.1;
+
 }
 
 h2, .about h2, .servicio-box h2, .servicio-texto-destacado h2, .services__content h2 {
@@ -1376,10 +1392,20 @@ h2, .about h2, .servicio-box h2, .servicio-texto-destacado h2, .services__conten
   line-height: 1.15;
 }
 
-h3, h4, h5, h6 {
+.contacto-directo h4{
   font-family: 'Montserrat', Arial, sans-serif !important;
   font-weight: 700 !important;
-  color: #dcd9fb !important;
+  color: #f8efff !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 0.8rem !important;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px #a198ff22;
+}
+
+h3, h5, h6 {
+  font-family: 'Montserrat', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  color: #c1bcf4 !important;
   font-size: 1.25rem !important;
   margin-bottom: 0.8rem !important;
   letter-spacing: 0.01em;
